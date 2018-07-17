@@ -1,0 +1,94 @@
+const Discord = require("discord.js");
+const YTDL = require("ytdl-core");
+
+const TOKEN = "NDY2NTc3Njg0NjI2MTQ1Mjgw.DieF-w.MaIEPypPezH6PWIbJYcSOk3LW6E"; // makar dinesh
+const PREFIX = "xnx"; // makar dinesh
+
+function play(connection, message) {
+    var server = servers[message.guild.id];
+
+    servers.dispatcher = connection.platStream(YTDL(server.queue[0], {filter: "audioonly"}));
+
+    server.queue.shift();
+
+    server.dispatcher.on("end", function(){
+        if (server,queue[0]) play(connection, message);
+        else connection.disconnect();
+    });
+}
+
+var bot = new Discord.Client();
+var servers = {};
+
+bot.on("ready", function(){
+    console.log("Ready");
+})
+
+bot.on("message", function(message) {
+
+
+    if (message.author.equals(bot.user)) return;
+
+    if (!message.content.startsWith(PREFIX)) return;
+
+    var args = message.content.substring(PREFIX.length).split(" ")
+
+    switch (args[0].toLowerCase()) {
+        case "p":
+                message.channel.sendMessage("Йоу,тащи Drugs брат туса начилась!")
+                break;
+        case "инфа":
+            message.channel.sendMessage("я бот крч самый быстрый по флоу и самый крутой диджей!");
+                break;
+        case "s":
+            message.channel.sendMessage("йоу -пати бро!")
+            break;
+        case "embed":
+            var embed = new Discord.RichEmbed()
+                .setDescription("hell yeah")
+                .addField("Test Title", "Test Description", true)
+                .addField("2Test Title", "Test Description", true)
+                .addField("3Test Title", "Test Description", true)
+                .setColor(randomHexColor())
+                .setThumbnail(message.author.avatarURL)
+                .setFooter("Шарииите ща песню включу!")
+                message.channel.sendEmbed(embed);
+                break;
+        case "play":
+            if (!args[0]) {
+                message.channel.sendMessage("браза кинь ссылку а то её нет")
+                return;
+            }
+
+            if (!message.channel.sendMessage) {
+                message.channel.sendMessage("Йоу я не могу начать пати без тебя мэн!");
+                return;
+            }
+
+            if(!servers[message.guild.id]) servers[message.guild.id] = {
+                queue: []
+            };
+
+            var server = servers[message.guild.id];
+
+            server.queue.push(args[0]);
+            if (!message.guild.voiceConnection) message.member.voiceChannel.join().then(function(connection){
+                play(connection, message);
+            });
+            break;
+        case "skip":
+            var server = servers[message.guild.id];
+
+            if (server.dispatcher) server.dispatcher.end();
+            break;
+        case "stop":
+            var server = servers[message.guild.id];
+
+            if (message.guild.voiceConnection) message.guild.voiceConnection.disconnect();
+            break;
+        default:
+            message.channel.sendMessage("без xnx в твоём сообщение не разберёшься напиши внятнее пожалуйста!")
+            break;
+    }
+});
+bot.login(TOKEN);
