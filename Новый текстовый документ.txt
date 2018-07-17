@@ -1,4 +1,4 @@
-const Discord = require("discord.js");
+п»їconst Discord = require("discord.js");
 const YTDL = require("ytdl-core");
 
 const TOKEN = "NDY2NTc3Njg0NjI2MTQ1Mjgw.DieF-w.MaIEPypPezH6PWIbJYcSOk3LW6E"; // makar dinesh
@@ -35,13 +35,13 @@ bot.on("message", function(message) {
 
     switch (args[0].toLowerCase()) {
         case "p":
-                message.channel.sendMessage("Йоу,тащи Drugs брат туса начилась!")
+                message.channel.sendMessage("Р™РѕСѓ,С‚Р°С‰Рё Drugs Р±СЂР°С‚ С‚СѓСЃР° РЅР°С‡РёР»Р°СЃСЊ!")
                 break;
-        case "инфа":
-            message.channel.sendMessage("я бот крч самый быстрый по флоу и самый крутой диджей!");
+        case "РёРЅС„Р°":
+            message.channel.sendMessage("СЏ Р±РѕС‚ РєСЂС‡ СЃР°РјС‹Р№ Р±С‹СЃС‚СЂС‹Р№ РїРѕ С„Р»РѕСѓ Рё СЃР°РјС‹Р№ РєСЂСѓС‚РѕР№ РґРёРґР¶РµР№!");
                 break;
         case "s":
-            message.channel.sendMessage("йоу -пати бро!")
+            message.channel.sendMessage("Р№РѕСѓ -РїР°С‚Рё Р±СЂРѕ!")
             break;
         case "embed":
             var embed = new Discord.RichEmbed()
@@ -51,17 +51,17 @@ bot.on("message", function(message) {
                 .addField("3Test Title", "Test Description", true)
                 .setColor(randomHexColor())
                 .setThumbnail(message.author.avatarURL)
-                .setFooter("Шарииите ща песню включу!")
+                .setFooter("РЁР°СЂРёРёРёС‚Рµ С‰Р° РїРµСЃРЅСЋ РІРєР»СЋС‡Сѓ!")
                 message.channel.sendEmbed(embed);
                 break;
         case "play":
             if (!args[0]) {
-                message.channel.sendMessage("браза кинь ссылку а то её нет")
+                message.channel.sendMessage("Р±СЂР°Р·Р° РєРёРЅСЊ СЃСЃС‹Р»РєСѓ Р° С‚Рѕ РµС‘ РЅРµС‚")
                 return;
             }
 
             if (!message.channel.sendMessage) {
-                message.channel.sendMessage("Йоу я не могу начать пати без тебя мэн!");
+                message.channel.sendMessage("Р™РѕСѓ СЏ РЅРµ РјРѕРіСѓ РЅР°С‡Р°С‚СЊ РїР°С‚Рё Р±РµР· С‚РµР±СЏ РјСЌРЅ!");
                 return;
             }
 
@@ -87,7 +87,7 @@ bot.on("message", function(message) {
             if (message.guild.voiceConnection) message.guild.voiceConnection.disconnect();
             break;
         default:
-            message.channel.sendMessage("без xnx в твоём сообщение не разберёшься напиши внятнее пожалуйста!")
+            message.channel.sendMessage("Р±РµР· xnx РІ С‚РІРѕС‘Рј СЃРѕРѕР±С‰РµРЅРёРµ РЅРµ СЂР°Р·Р±РµСЂС‘С€СЊСЃСЏ РЅР°РїРёС€Рё РІРЅСЏС‚РЅРµРµ РїРѕР¶Р°Р»СѓР№СЃС‚Р°!")
             break;
     }
 });
